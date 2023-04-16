@@ -10,6 +10,8 @@ linters:
   disable-all: true
   enable:
     - errcheck
+    - errorlint
+    - gofmt
     - goimports
     - gosimple
     - govet
@@ -18,8 +20,7 @@ linters:
     - staticcheck
     - typecheck
     - unused
-    - gofmt
-
+ 
     # Could be enabled later:
     # - gocyclo
     # - maligned
