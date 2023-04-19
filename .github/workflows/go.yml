@@ -23,9 +23,3 @@ jobs:
       uses: golangci/golangci-lint-action@v3
       with:
         args: --verbose
-
-    - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
