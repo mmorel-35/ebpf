@@ -79,9 +79,7 @@ func (v Version) Kernel() uint32 {
 }
 
 // KernelVersion returns the version of the currently running kernel.
-var KernelVersion = Memoize(func() (Version, error) {
-	return detectKernelVersion()
-})
+var KernelVersion = Memoize(detectKernelVersion)
 
 // detectKernelVersion returns the version of the running kernel.
 func detectKernelVersion() (Version, error) {
