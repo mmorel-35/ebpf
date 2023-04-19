@@ -159,9 +159,9 @@ func newDistanceFilter() (*ebpf.Program, *ebpf.Map, error) {
 	return prog, ttls, nil
 }
 
-func minDistance(TTLs *ebpf.Map) (int, error) {
+func minDistance(ttls *ebpf.Map) (int, error) {
 	var (
-		entries = TTLs.Iterate()
+		entries = ttls.Iterate()
 		ttl     uint32
 		minDist uint32 = 255
 		count   uint64
