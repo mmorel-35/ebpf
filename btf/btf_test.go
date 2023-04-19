@@ -330,19 +330,15 @@ func TestLoadSpecFromElf(t *testing.T) {
 		var fn *Func
 		if err := spec.TypeByName("global_fn", &fn); err != nil {
 			t.Error("Can't find global_fn():", err)
-		} else {
-			if fn.Linkage != GlobalFunc {
-				t.Error("Expected global linkage:", fn)
-			}
+		} else if fn.Linkage != GlobalFunc {
+			t.Error("Expected global linkage:", fn)		
 		}
 
 		var v *Var
 		if err := spec.TypeByName("key3", &v); err != nil {
 			t.Error("Cant find key3:", err)
-		} else {
-			if v.Linkage != GlobalVar {
-				t.Error("Expected global linkage:", v)
-			}
+		} else if v.Linkage != GlobalVar {
+			t.Error("Expected global linkage:", v)		
 		}
 
 		if spec.byteOrder != internal.NativeEndian {
