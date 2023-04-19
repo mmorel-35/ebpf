@@ -867,8 +867,7 @@ func TestLibBPFCompat(t *testing.T) {
 			t.Fatalf("Can't read %s: %s", file, err)
 		}
 
-		switch file {
-		case "test_sk_assign.o":
+		if file == "test_sk_assign.o" {
 			// Test contains a legacy iproute2 bpf_elf_map definition.
 			for _, m := range spec.Maps {
 				if m.Extra == nil || m.Extra.Len() == 0 {
