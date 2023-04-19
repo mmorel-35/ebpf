@@ -313,8 +313,7 @@ func (cs *CollectionSpec) LoadAndAssign(to interface{}, opts *CollectionOptions)
 
 	// Evaluate the loader's objects after all (lazy)loading has taken place.
 	for n, m := range loader.maps {
-		switch m.typ {
-		case ProgramArray:
+		if m.typ == ProgramArray {
 			// Require all lazy-loaded ProgramArrays to be assigned to the given object.
 			// The kernel empties a ProgramArray once the last user space reference
 			// to it closes, which leads to failed tail calls. Combined with the library
