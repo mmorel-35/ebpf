@@ -127,15 +127,15 @@ func newProgramInfoFromFd(fd *sys.FD) (*ProgramInfo, error) {
 
 	// Start with a clean struct for the second call, otherwise we may get EFAULT.
 	var info2 sys.ProgInfo
-
-	if info.NrMapIds > 0 {
+	switch {
+	case info.NrMapIds > 0:
 		pi.maps = make([]MapID, info.NrMapIds)
 		info2.NrMapIds = info.NrMapIds
 		info2.MapIds = sys.NewPointer(unsafe.Pointer(&pi.maps[0]))
-	} else if haveProgramInfoMapIDs() == nil {
+	case haveProgramInfoMapIDs() == nil:
 		// This program really has no associated maps.
 		pi.maps = make([]MapID, 0)
-	} else {
+	default:
 		// The kernel doesn't report associated maps.
 		pi.maps = nil
 	}
